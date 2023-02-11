@@ -1,4 +1,6 @@
 import { Id } from "./id";
+import * as Educations from "./education";
+import * as FieldOfWorks from "./fieldOfWork";
 
 export type Specialist = Partial<{
   id: Id;
@@ -8,7 +10,9 @@ export type Specialist = Partial<{
   cpf: string;
   mobile: string;
   fieldOfWorkId: Id;
+  fieldOfWork: FieldOfWorks.FieldOfWork;
   educationId: Id;
+  education: Educations.Education;
   profession: string;
   createdAt: string;
   updatedAt: string;
