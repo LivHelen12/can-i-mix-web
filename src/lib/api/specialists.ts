@@ -8,7 +8,19 @@ export type Specialist = Partial<{
   cpf: string;
   mobile: string;
   fieldOfWorkId: Id;
+  fieldOfWork: Partial<{
+    id: Id;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+  }>;
   educationId: Id;
+  education: Partial<{
+    id: Id;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+  }>;
   profession: string;
   createdAt: string;
   updatedAt: string;

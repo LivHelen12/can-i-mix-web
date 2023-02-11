@@ -26,7 +26,7 @@ export const Card = ({
             </h5>
             <Link
               to={`/details/${cardId}`}
-              className="text-slate-800/70 font-semibold"
+              className="text-slate-900 font-semibold"
             >
               Ver mais
             </Link>

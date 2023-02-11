@@ -10,14 +10,13 @@ export const Details = () => {
   const { id } = useParams();
   const [post, setPost] = useState<Posts.Post>({});
 
-  console.log(post);
-
   useEffect(() => {
     api
       .get(`/post/${id}`)
       .then((response) => {
         const data = response.data;
         setPost(data);
+        console.log(data);
       })
       .catch((error) => console.log("ops, ocorreu algo errado..." + error));
   }, [id]);
@@ -30,10 +29,11 @@ export const Details = () => {
         recommended={post.recommended?.name}
         content={post.content}
       />
+
       <Footer
-        author="Livia Helen"
-        education="Graduado(a)"
-        fieldOfWork="Química"
+        author={post.specialist?.name}
+        education={post?.specialist?.education?.name}
+        fieldOfWork={post?.specialist?.fieldOfWork?.name}
       />
     </>
   );
