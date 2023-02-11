@@ -10,31 +10,24 @@ export const Details = () => {
   const { id } = useParams();
   const [post, setPost] = useState<Posts.Post>({});
 
-  useEffect(() => {
+  const getPostById = () => {
     api
       .get(`/post/${id}`)
       .then((response) => {
         const data = response.data;
         setPost(data);
-        console.log(data);
       })
       .catch((error) => console.log("ops, ocorreu algo errado..." + error));
+  };
+
+  useEffect(() => {
+    getPostById();
   }, [id]);
 
   return (
     <>
-      <DetailsCard
-        firstSubstance={post.firstSubstance?.name}
-        secondSubstance={post.secondSubstance?.name}
-        recommended={post.recommended?.name}
-        content={post.content}
-      />
-
-      <Footer
-        author={post.specialist?.name}
-        education={post?.specialist?.education?.name}
-        fieldOfWork={post?.specialist?.fieldOfWork?.name}
-      />
+      <DetailsCard post={post} />
+      <Footer post={post} />
     </>
   );
 };

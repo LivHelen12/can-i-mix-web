@@ -12,11 +12,15 @@ export const Home = () => {
   const [posts, setPosts] = useState<Array<Posts.Post>>([]);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
+  const getAllPosts = () => {
     api
       .get("/post")
       .then((response) => setPosts(response.data))
       .catch((error) => console.log("ops, ocorreu algo errado..." + error));
+  };
+
+  useEffect(() => {
+    getAllPosts();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,13 +62,7 @@ export const Home = () => {
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
             <div key={post.id} className="m-4">
-              <Card
-                cardId={post.id}
-                firstSubstance={post.firstSubstance?.name}
-                secondSubstance={post.secondSubstance?.name}
-                recommended={post.recommended?.name}
-                description={post.description}
-              />
+              <Card post={post} />
             </div>
           ))
         ) : (

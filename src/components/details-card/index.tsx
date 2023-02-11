@@ -1,23 +1,16 @@
 import { Link } from "react-router-dom";
+import { Post } from "../../lib/api/post";
 
 type Props = {
-  firstSubstance?: string;
-  secondSubstance?: string;
-  recommended?: string;
-  content?: string;
+  post: Post;
 };
 
-export const DetailsCard = ({
-  firstSubstance,
-  secondSubstance,
-  recommended,
-  content,
-}: Props) => {
+export const DetailsCard = ({ post }: Props) => {
   return (
     <div>
       <div className="flex justify-between items-center">
         <h1 className="font-bold text-5xl mb-6">
-          {firstSubstance} + {secondSubstance}
+          {post?.firstSubstance?.name} + {post?.secondSubstance?.name}
         </h1>
         <Link
           to="/"
@@ -28,8 +21,8 @@ export const DetailsCard = ({
       </div>
 
       <div>
-        <h2 className="font-bold text-2xl mb-6">{recommended}</h2>
-        <p className="text-lg">{content}</p>
+        <h2 className="font-bold text-2xl mb-6">{post?.recommended?.name}</h2>
+        <p className="text-lg">{post?.content}</p>
       </div>
     </div>
   );
